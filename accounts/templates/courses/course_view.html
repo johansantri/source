@@ -1,0 +1,118 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load i18n %}
+
+{% block content %}
+
+<div class="tile mb-4">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-header">
+          <h2 class="mb-3 line-head" id="containers">studio home</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+      
+        <p style="text-align: right;"><button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Create Course</button></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="bs-component">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-start">Cras justo odio<span class="badge bg-primary rounded-pill">14</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">Dapibus ac facilisis in<span class="badge bg-primary rounded-pill">2</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">Morbi leo risus<span class="badge bg-primary rounded-pill">1</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="bs-component">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-start">Cras justo odio<span class="badge bg-primary rounded-pill">14</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">Dapibus ac facilisis in<span class="badge bg-primary rounded-pill">2</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">Morbi leo risus<span class="badge bg-primary rounded-pill">1</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="bs-component">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-start">Cras justo odio<span class="badge bg-primary rounded-pill">14</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">Dapibus ac facilisis in<span class="badge bg-primary rounded-pill">2</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">Morbi leo risus<span class="badge bg-primary rounded-pill">1</span></li>
+          </ul>
+        </div>
+      </div>
+ 
+    
+    </div>
+   
+   
+  </div>
+
+
+
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Create a New Course</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal">
+                <div class="mb-3 row">
+                  <label class="form-label col-md-3">Course Name</label>
+                  <div class="col-md-8">
+                    <input class="form-control" type="text" placeholder="e.g. Introduction to Computer Science"><small class="form-text text-muted" id="emailHelp">The public display name for your course. This cannot be changed, but you can set a different display name in Advanced Settings later..</small>
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="form-label col-md-3">Course Number</label>
+                    <div class="col-md-8">
+                      <input class="form-control" type="text" placeholder="AD01"> <small class="form-text text-muted" id="emailHelp">The public display Number for your course. This cannot be changed, but you can set a different display Number in Advanced Settings later..</small>
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label class="form-label col-md-3">Organization</label>
+                    <div class="col-md-8">
+                      <input class="form-control" type="text" placeholder="ICEx"> <small class="form-text text-muted" id="emailHelp">The name of the organization sponsoring the course..</small>
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label class="form-label col-md-3">Course Run</label>
+                    <div class="col-md-8">
+                      <input class="form-control" type="text" placeholder="2023T1"> <small class="form-text text-muted" id="emailHelp">The term in which your course will run.</small>
+                    </div>
+                  </div>
+               
+                <div class="mb-3 row">
+                  <div class="col-md-8 col-md-offset-3">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox">I accept the terms and conditions
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+{% endblock %}

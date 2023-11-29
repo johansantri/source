@@ -1,0 +1,41 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load i18n %}
+
+{% block content %}
+<div class="col-md-12">
+  <div class="tile">
+    <div class="row">
+      <div class="col-md-4">
+    <h5 class="tile-title">table partner</h5>
+  </div>
+    <div class="col-md-8">
+    <p style="text-align: right;"><a href="{% url 'accounts:partner_add' %}" class="btn btn-primary" type="button"><i class="bi bi-check-circle-fill me-2"></i>Register</a></p>
+  </div>
+  </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>partner name</th>
+          <th>email partner</th>
+          <th>phone</th>
+          <th>status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Universitas Indonesia</td>
+          <td>admin@ui.ac.id</td>
+          <td>085767686768</td>
+          <td>aktif</td>
+        </tr>
+       
+      </tbody>
+    </table>
+  </div>
+</div>
+ 
+  
+{% endblock %}

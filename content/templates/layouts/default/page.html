@@ -1,0 +1,194 @@
+{% load static %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% get_current_language as language_code %}
+
+<!DOCTYPE html>
+<html lang="{{ language_code }}">
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="An example of Django project with basic user functionality.">
+    <meta name="author" content="Yehor Smoliakov">
+
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+
+    <title>STUDIO CONTENT</title>
+
+    <!--<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"> -->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+      <!-- Essential javascripts for application to work-->
+ <script src="{% static 'js/jquery-3.7.0.min.js' %}"></script>
+  </head>
+
+<body class="app sidebar-mini">
+ <!-- Navbar-->
+
+ 
+ <header class="app-header"><a class="app-header__logo" href="{% url 'index' %}">STUDIO</a>
+    <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+    <!-- Navbar Right Menu-->
+    <ul class="app-nav">
+      <li class="app-search">
+        <input class="app-search__input" type="search" placeholder="Search">
+        <button class="app-search__button"><i class="bi bi-search"></i></button>
+      </li>
+
+      
+
+      <!--Notification Menu-->
+      <li class="dropdown"><a class="app-nav__item" href="#" data-bs-toggle="dropdown" aria-label="Show notifications"><i class="bi bi-bell fs-5"></i></a>
+        <ul class="app-notification dropdown-menu dropdown-menu-right">
+          <li class="app-notification__title">You have 4 new notifications.</li>
+          <div class="app-notification__content">
+            <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><i class="bi bi-envelope fs-4 text-primary"></i></span>
+                <div>
+                  <p class="app-notification__message">Lisa sent you a mail</p>
+                  <p class="app-notification__meta">2 min ago</p>
+                </div></a></li>
+            <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><i class="bi bi-exclamation-triangle fs-4 text-warning"></i></span>
+                <div>
+                  <p class="app-notification__message">Mail server not working</p>
+                  <p class="app-notification__meta">5 min ago</p>
+                </div></a></li>
+            <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><i class="bi bi-cash fs-4 text-success"></i></span>
+                <div>
+                  <p class="app-notification__message">Transaction complete</p>
+                  <p class="app-notification__meta">2 days ago</p>
+                </div></a></li>
+            <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><i class="bi bi-envelope fs-4 text-primary"></i></span>
+                <div>
+                  <p class="app-notification__message">Lisa sent you a mail</p>
+                  <p class="app-notification__meta">2 min ago</p>
+                </div></a></li>
+            <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><i class="bi bi-exclamation-triangle fs-4 text-warning"></i></span>
+                <div>
+                  <p class="app-notification__message">Mail server not working</p>
+                  <p class="app-notification__meta">5 min ago</p>
+                </div></a></li>
+            <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><i class="bi bi-cash fs-4 text-success"></i></span>
+                <div>
+                  <p class="app-notification__message">Transaction complete</p>
+                  <p class="app-notification__meta">2 days ago</p>
+                </div></a></li>
+          </div>
+          <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
+        </ul>
+      </li>
+      <!-- User Menu-->
+     
+      <li class="dropdown"><a class="app-nav__item" href="#" data-bs-toggle="dropdown" aria-label="Open Profile Menu"><i class="bi bi-person fs-4"></i></a>
+        <ul class="dropdown-menu settings-menu dropdown-menu-right">
+
+            {% if request.user.is_authenticated %}
+           
+
+          <li><a class="dropdown-item" href="{% url 'accounts:change_email' %}"><i class="bi bi-gear me-2 fs-5"></i>{% trans 'Change email' %}</a></li>
+          <li><a class="dropdown-item" href="{% url 'accounts:change_profile' %}"><i class="bi bi-person me-2 fs-5"></i> {% trans 'Change profile' %}</a></li>
+          <li><a class="dropdown-item" href="{% url 'accounts:change_password' %}"><i class="bi bi-gear me-2 fs-5"></i> {% trans 'Change password' %}</a></li>
+          <li><a class="dropdown-item" href="{% url 'accounts:log_out_confirm' %}"><i class="bi bi-box-arrow-right me-2 fs-5"></i> {% trans 'Log out' %}</a></li>
+          {% else %}
+
+          <li><a class="dropdown-item" href="{% url 'change_language' %}"><i class="bi bi-translate me-2 fs-5" ></i>{% trans 'lang' %}</a></li>
+          <li><a class="dropdown-item" href="{% url 'accounts:sign_up' %}"><i class="bi bi-sign-merge-right me-2 fs-5"></i> {% trans 'Join Us' %}</a></li>
+          <li><a class="dropdown-item" href="{% url 'accounts:log_in' %}"><i class="bi bi-door-open me-2 fs-5" ></i>{% trans 'Log in' %}</a></li>
+          
+          {% endif %}
+          
+        </ul>
+      </li>
+    </ul>
+  </header>
+
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    {% if request.user.is_authenticated %}
+      {% if request.user.is_superuser %}
+    <aside class="app-sidebar">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://randomuser.me/api/portraits/men/1.jpg" alt="User Image">
+        <div>
+          <p class="app-sidebar__user-name">{{ request.user.username }}</p>
+          <p class="app-sidebar__user-designation">Frontend Developer</p>
+        </div>
+      </div>
+      {% endif %}
+      <ul class="app-menu">
+        <li><a class="app-menu__item active" href="{% url 'index' %}"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Dashboard</span></a></li>
+        <!-- batas atas menu -->
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon bi bi-laptop"></i><span class="app-menu__label">Partner</span><i class="treeview-indicator bi bi-chevron-right"></i></a>
+          <ul class="treeview-menu">
+           
+            <li><a class="treeview-item" href="{% url 'partner:partner_view' %}" ><i class="icon bi bi-circle-fill"></i> List </a></li>
+          
+          </ul>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon bi bi-ui-checks"></i><span class="app-menu__label">Courses</span><i class="treeview-indicator bi bi-chevron-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="{% url 'course:course_view' %}"><i class="icon bi bi-circle-fill"></i> List</a></li>
+           
+          </ul>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon bi bi-table"></i><span class="app-menu__label">Tables</span><i class="treeview-indicator bi bi-chevron-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="table-basic.html"><i class="icon bi bi-circle-fill"></i> Basic Tables</a></li>
+            <li><a class="treeview-item" href="table-data-table.html"><i class="icon bi bi-circle-fill"></i> Data Tables</a></li>
+          </ul>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon bi bi-file-earmark"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator bi bi-chevron-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="blank-page.html"><i class="icon bi bi-circle-fill"></i> Blank Page</a></li>
+            <li><a class="treeview-item" href="page-login.html"><i class="icon bi bi-circle-fill"></i> Login Page</a></li>
+            <li><a class="treeview-item" href="page-lockscreen.html"><i class="icon bi bi-circle-fill"></i> Lockscreen Page</a></li>
+            <li><a class="treeview-item" href="page-user.html"><i class="icon bi bi-circle-fill"></i> User Page</a></li>
+            <li><a class="treeview-item" href="page-invoice.html"><i class="icon bi bi-circle-fill"></i> Invoice Page</a></li>
+            <li><a class="treeview-item" href="page-mailbox.html"><i class="icon bi bi-circle-fill"></i> Mailbox</a></li>
+            <li><a class="treeview-item" href="page-error.html"><i class="icon bi bi-circle-fill"></i> Error Page</a></li>
+          </ul>
+        </li>
+        <li><a class="app-menu__item" href="{% url 'admin:login' %}"><i class="app-menu__icon bi bi-code-square"></i><span class="app-menu__label">{% trans 'Django administration' %}</span></a></li>
+      </ul>
+      <!-- batas bawah menu-->
+     
+
+      {% endif %}
+    </aside>
+
+
+<br>
+<br>
+
+
+<main class="app-content">
+            
+         
+    {% bootstrap_messages %}
+
+    {% block content %}
+        No content.
+    {% endblock %}
+  </main>
+
+<!--<script src="{% static 'vendor/jquery/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'vendor/popper/popper.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>-->
+
+<script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+
+
+
+ 
+ <script src="{% static 'js/bootstrap.min.js' %}"></script>
+ <script src="{% static 'js/main.js' %}"></script>
+ <!-- Page specific javascripts-->
+ <!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>-->
+ 
+
+
+</body>
+</html>

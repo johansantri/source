@@ -1,0 +1,50 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load i18n %}
+
+{% block content %}
+<div class="col-md-12">
+  <div class="tile">
+    <div class="row">
+      <div class="col-md-4">
+    <h5 class="tile-title">{% trans 'table partner' %}</h5>
+  </div>
+    <div class="col-md-8">
+    <p style="text-align: right;"><a href="{% url 'partner:partner_add' %}" class="btn btn-primary" type="button"><i class="bi bi-check-circle-fill me-2"></i>{% trans 'Register' %}</a></p>
+  </div>
+  </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>{% trans 'name' %}</th>
+          <th>{% trans 'email' %} </th>
+          <th>{% trans 'phone' %}</th>
+          <th>{% trans 'status' %}</th>
+          <th>{% trans 'join' %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for part in partnerlist %}
+        <tr>
+          <td>1</td>
+          <td><a href="{% url 'partner:partner_edit' part.id %}">{{part.partner_name}}</a></td>
+          <td>{{part.partner_email}}</td>
+          <td>{{part.partner_phone}}</td>
+          <td>
+            {% if part.partner_status == '1' %}
+            <span class="badge text-bg-primary">{% trans 'active' %}</span>
+            {% else %}
+            <span class="badge text-bg-warning">{% trans 'inactive' %}</span>
+            {% endif %}
+          </td>
+          <td>{{part.partner_join}}</td>
+        </tr>
+       {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+ 
+  
+{% endblock %}

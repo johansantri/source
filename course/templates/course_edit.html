@@ -1,0 +1,153 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load i18n %}
+
+{% block content %}
+
+ 
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <h3 class="tile-title">Create new course</h3>
+        <div class="tile-body">
+          <form id="sumbitformpratner" method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">course name</label>
+                    <input class="form-control" type="text" name="course_name" value="{{ course.course_name }}" maxlength="250" required placeholder="Enter course name">
+                  </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label"> topic</label>
+                    <input class="form-control" type="text" name="topic" value="{{ course.topic}}" maxlength="250" required placeholder="Enter topic">
+                  </div>
+            </div>
+           </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="mb-3">
+                    <label class="form-label">type course </label>
+                   
+                <select class="form-control" name="type_course"  required>
+               
+                
+                 
+                  <option value="{{ course.type_course }}" selected>{{ course.type_course}} </option>
+                    
+                  <option value="self">self</option>
+                  <option value="instructor">instructor</option>
+
+                
+       
+
+
+
+                </select>
+                </div>
+
+                  
+              </div>
+              <div class="col-md-3">
+                <div class="mb-3">
+                    <label class="form-label">org </label>
+                   
+                <select class="form-control" name="org_partner" required>
+                  
+
+                  <option value="{{ course.org_partner.id }}" selected>{{ course.org_partner}} </option>
+
+                  {% for part in partnerlist %}
+                  <option value="{{part.id}}">{{part.partner_name}}</option>
+                  {% endfor%}
+                  
+                 
+                </select>
+                </div>
+
+                  
+              </div>
+            
+
+              <div class="col-md-3">
+                <div class="mb-3">
+                    <label class="form-label">status</label>
+                    <select class="form-control" id="exampleSelect1" required name="status_course">
+                     
+                    <option value="{{ course.status_course }}" selected>{{ course.status_course}} </option>
+                      <option value="draft">draft</option>
+                    
+                      <option value="pending">pending</option>
+                      <option value="qurations">qurations</option>
+             
+                    </select>
+                  </div>
+                 
+            </div>
+
+            <div class="col-md-3">
+                <div class="mb-3">
+                    <label class="form-label">course run</label>
+                    <input class="form-control" type="number" name="course_year" value="{{course.course_year}}" maxlength="20" required placeholder="xxxx">
+                  </div>
+              </div>
+
+            </div>
+         
+         
+           <div class="row">
+         
+
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">author </label>
+                   
+                <select class="form-control" name="author"  required>
+                  <option value="{{course.author.id}}">{{course.author}}</option>
+                  
+                  {% for usr in userlist %}
+                  <option value="{{usr.id}}">{{usr.username}}</option>
+                  {% endfor%}
+                  
+                 
+                </select>
+                </div>
+
+                  
+              </div>
+            
+
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label"> thumbnail</label>
+                    {% if course.image_course %}
+                    <img src="{{ course.image_course.url }}" alt="image here" style="width: 50px; height: 50px;">
+                {% endif %}
+                    <input class="form-control" type="file" name="image_course"  >
+                  </div>
+
+            </div>
+           </div>
+        
+            <div class="tile-footer">
+              <button class="btn btn-primary"  type="submit"><i class="bi bi-check-circle-fill me-2"></i>Register</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="{% url 'partner:partner_view'%}"><i class="bi bi-x-circle-fill me-2"></i>Cancel</a>
+            </div>
+          </form>
+        </div>
+       
+      </div>
+    </div>
+    
+
+ 
+  </div>
+
+  
+
+
+
+
+  
+{% endblock %}

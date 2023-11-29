@@ -1,0 +1,61 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load i18n %}
+
+{% block content %}
+<div class="col-md-12">
+  <div class="tile">
+    <div class="row">
+      <div class="col-md-4">
+    <h5 class="tile-title">{% trans 'table course' %}</h5>
+  </div>
+    <div class="col-md-8">
+    <p style="text-align: right;"><a href="{% url 'course:course_add' %}" class="btn btn-primary" type="button"><i class="bi bi-check-circle-fill me-2"></i>{% trans 'Cretae New' %}</a></p>
+  </div>
+  </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>{% trans 'course name' %}</th>
+          <th>{% trans 'type' %} </th>
+       
+          <th>{% trans 'status' %}</th>
+          <th>{% trans 'org' %}</th>
+          <th>{% trans 'run' %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for part in courselist %}
+        <tr>
+          <td>1</td>
+          <td><a href="{% url 'course:course_detail' part.id %}">{{part.course_name}}</a></td>
+          <td>{{part.type_course}}</td>
+          
+          <td>
+            {% if part.status_course == 'draft' %}
+            <span class="badge text-bg-info">{% trans 'draft' %}</span>
+            {% elif part.status_course == 'pending' %}
+            <span class="badge text-bg-warning">{% trans 'pending' %}</span>
+            {% elif part.status_course == 'publish' %}
+            <span class="badge text-bg-success">{% trans 'publish' %}</span>
+            {% else %}
+            <span class="badge text-bg-primary">{% trans 'qurations' %}</span>
+            {% endif %}
+          </td>
+          <td>{{part.org_partner}}</td>
+          <td>{{part.course_year}}</td>
+        </tr>
+       {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+ 
+
+
+
+
+
+  
+{% endblock %}

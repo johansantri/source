@@ -1,0 +1,190 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load i18n %}
+
+{% block content %}
+
+ 
+  
+
+  
+
+  <div class="app-title">
+    <div>
+      <h1> <i class="bi bi-file-earmark-text"></i>
+        <a href="{% url 'course:course_view'%}">{{course.course_name}}</a></h1>
+        <hr>
+      <p>{{course.org_partner}} || {{course.type_course}} || {{course.start_date}} || {{course.author}} || {{course.status_course}}</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+      
+      <li class="breadcrumb-item"><!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+          New Section
+        </button></li>
+    </ul>
+  </div>
+ 
+
+  {% for sec in ssc %}
+  <div class="row" >
+   <div class="col-md-12">
+     <div class="title">
+      <ul class="list-group">
+       
+     
+        <li class="list-group-item list-group-item-warning" data-bs-toggle="collapse" data-bs-target="#demo">    <h5>  {{sec.sub_section_id}}  >  {{sec.sub_section_name}}  
+          
+      
+          
+          
+          <i class="bi bi-chevron-down"></i>
+          <a href=""> </a></h5>
+      
+        </li>
+        
+      
+       
+      </ul>
+  </div>
+   </div>
+  </div>
+<br>
+{% endfor %}  
+
+
+
+
+
+<!-- Modal section -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Create New Section</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form  method="POST" action="" >
+          {% csrf_token %}
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="mb-3" >
+                   
+                   <p id="hasil"></p>
+                      <input class="form-control" type="text" name="course_section" id="section_name" maxlength="250" value="section_name" required placeholder="Section">
+                      <input class="form-control" type="text" name="{{course.org_partner.id}}" id="section_id_courses" value="{{course.org_partner.id}}" hidden>
+                    </div>
+
+                  
+              </div>
+           
+       
+         </div>
+             
+         <div class="col-md-12">
+          <div class="mb-3">
+          
+              <button class="btn btn-outline-primary"   type="submit"><i class="bi bi-check-circle-fill me-2"></i>+ New Subsection</button>
+            </div>
+
+          
+      </div>
+      
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="btnSaveSection"  class="btn btn-primary"><i class="bi bi-check-circle-fill me-2"></i>save</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+
+<button class='btn btn-outline-primary' id='changeSection' data-bs-toggle="modal" data-bs-target="#exampleModal"> New subsection </button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script>// Save data
+ 
+  
+
+
+    $('#btnSaveSection').click(function(){
+        //console.log("Button Save Clicked");
+        output ="";
+        //let sid = $('#id_course').val();
+        let section_id_courses = $('#section_id_courses').val();
+        let section_name = $('#section_name').val();
+        
+    
+        //console.log(sid);
+        //console.log(n);
+
+
+
+        if(section_name == ""){
+            console.log("Please section");
+       
+        }else{
+            //console.log(n);
+            //console.log(e);
+            //console.log(c);
+    
+            mydata = {section_name:section_name,section_id_course:section_id_courses};
+    
+            //console.log(mydata);
+            $.ajax({
+                url: "{% url 'course:course_section' %}",
+                method: "POST",
+                data: mydata,
+    
+                success:function(data){
+                                        x = data.section_data;
+                                        //alert(x);
+                                        for(i=0; i<x.length; i++){
+                                                output += 
+                                                    "<button class='btn btn-outline-primary' id='changeSection'>" + x[i].section_name +
+                                                    "</button> "
+                                            }
+                                            $('#hasil').html(output);
+                                            $('#section_name').fadeOut();
+                                            $('#btnSaveSection').fadeOut();
+                                            $('form')[0].reset();
+                        
+                        
+                                    }
+            });
+    }
+
+
+    $("#changeSection").click(function(){
+      $('#section_name').fadeIn();
+    })
+    
+    })</script>
+
+{% endblock %}
+
+
