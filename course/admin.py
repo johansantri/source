@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Partner, Course, Section, SubSection
+from .models import Partner, Course, Section, SubSection, Category
 from django.contrib.auth.models import User
 
 
@@ -15,4 +15,5 @@ admin.site.register(Course)
 
 admin.site.register(Section)
 admin.site.register(SubSection)
+admin.site.register(Category)
 

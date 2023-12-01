@@ -26,31 +26,93 @@
   </div>
  
 
-  {% for sec in ssc %}
-  <div class="row" >
-   <div class="col-md-12">
-     <div class="title">
-      <ul class="list-group">
-       
-     
-        <li class="list-group-item list-group-item-warning" data-bs-toggle="collapse" data-bs-target="#demo">    <h5>  {{sec.sub_section_id}}  >  {{sec.sub_section_name}}  
-          
-      
-          
-          
-          <i class="bi bi-chevron-down"></i>
-          <a href=""> </a></h5>
-      
-        </li>
+
+
         
-      
-       
-      </ul>
-  </div>
-   </div>
-  </div>
-<br>
-{% endfor %}  
+
+
+
+
+
+
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      {% for i in catg %}
+      {% if not i.children.all %}
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{i.slug}}" aria-expanded="true" aria-controls="collapseOne">
+               <h5> {{i.title}}</h5>
+            </button>
+        </h2>
+
+        {% else %}
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{i.slug}}" aria-expanded="true" aria-controls="collapseOne">
+            <h5>{{i.title}}</h5> 
+          </button>
+      </h2>
+
+
+
+        <div id="{{i.slug}}" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+
+                <div class="accordion" id="sub-accordionExample">
+                      <div class="accordion-item">
+                        {% for obj in i.children.all %}
+                      {% if not obj.children.all %}
+                          <h2 class="accordion-header" id="sub-headingOne">
+                              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{obj.slug}}" aria-expanded="false" aria-controls="collapseOne">
+                                  sub menu #1 {{obj.title}}
+                              </button>
+                          </h2>
+
+                          {% else %}
+
+                          <h2 class="accordion-header" id="sub-headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{obj.slug}}" aria-expanded="false" aria-controls="collapseOne">
+                                {{obj.title}}
+                            </button>
+                        </h2>
+
+                        {% for subobj in obj.children.all %}
+
+                          <div id="{{obj.slug}}" class="accordion-collapse collapse show" aria-labelledby="sub-headingOne" data-bs-parent="#sub-accordionExample">
+                              <div class="accordion-body">
+                                  <strong>{{subobj.title}}.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                              </div>
+                          </div>
+                          {% endfor %}
+
+                          {% endif %}
+                  {% endfor %}
+                      </div>
+                      <div class="accordion-item">
+                          <h2 class="accordion-header" id="sub-headingTwo">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sub-collapseTwo" aria-expanded="false" aria-controls="sub-collapseTwo">
+                                sub menu #2
+                              </button>
+                          </h2>
+                          <div id="sub-collapseTwo" class="accordion-collapse collapse" aria-labelledby="sub-headingTwo" data-bs-parent="#sub-accordionExample">
+                              <div class="accordion-body">
+                                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                              </div>
+                          </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        {% endif %}
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
 
 
 
