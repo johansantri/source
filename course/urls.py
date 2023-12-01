@@ -11,7 +11,7 @@ urlpatterns = [
     path("course-detail/<str:pk>", views.courseDetail, name= "course_detail"),
     path("course-section/", views.courseSection, name= "course_section"),
     path("list-section/", views.listSection, name= "list_section"),
-    path("course-sub-section",views.courseSubSection, name="course_sub_section"),
+    path("course-sub",views.courseSub, name="course_sub"),
     
 
    

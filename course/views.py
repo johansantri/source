@@ -109,15 +109,15 @@ def courseSection(request):
     if request.user.is_staff == True:
              
        
-        section_name = request.POST.get("section_name")
-        section_id_course = request.POST.get("section_id_course")
+        title = request.POST.get("title")
+        mk = request.POST.get("mk_id")
         #print('id',course_section)
         try:
                 
-            vs = Section(section_name=section_name,
-                         section_id_course_id=section_id_course)
+            vs = Category(title=title,
+                         mk_id=mk)
             vs.save()
-            ls = Section.objects.all().order_by( '-id')[:1].values()
+            ls = Category.objects.all().order_by( '-id')[:1].values()
             #ls = Section.objects.values()          
             section_data = list(ls)
             return JsonResponse({'status':'data section save','section_data':section_data})
@@ -126,6 +126,30 @@ def courseSection(request):
 
             return JsonResponse({'status':'section no save'})
         
+
+#add section
+@csrf_exempt
+def courseSub(request):
+    if request.user.is_staff == True:
+             
+       
+        title = request.POST.get("title")
+        mk = request.POST.get("mk_id")
+        parent = request.POST.get("parent_id")
+        #print('id',course_section)
+        try:
+                
+            vs = Category(title=title,
+                         mk_id=mk,parent_id=parent)
+            vs.save()
+            ls = Category.objects.all().order_by( '-id')[:1].values()
+            #ls = Section.objects.values()          
+            section_data = list(ls)
+            return JsonResponse({'status':'data sub save','section_data':section_data})
+
+        except:
+
+            return JsonResponse({'status':'sub section no save'})
 
     #list section
 @csrf_exempt
