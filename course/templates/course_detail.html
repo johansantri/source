@@ -72,7 +72,7 @@
           </div>
        
           <div class="mb-3 col-md-2 align-self-end">
-            <button class="btn btn-primary" type="button" id="{{i.id}}" onClick="reply_click(this.id)"><i class="bi bi-check-circle-fill me-2"></i>{{i.id}}</button>
+            <button class="btn btn-primary" type="button" id="{{i.id}}" onClick="reply_click(this.id)"><i class="bi bi-check-circle-fill me-2"></i>add</button>
           </div>
         </form>
 <!--end form new subsection-->
@@ -103,7 +103,7 @@
                       {% if not obj.children.all %}
                           <h2 class="accordion-header" id="sub-headingOne">
                               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{obj.slug}}" aria-expanded="false" aria-controls="collapseOne">
-                                   #1 {{obj.title}}
+                                   {{obj.title}}
                               </button>
                           </h2>
                           
@@ -140,7 +140,7 @@
                         </div>
                      
                         <div class="mb-3 col-md-2 align-self-end">
-                          <button class="btn btn-primary" type="button" id="{{i.id}}" onClick="reply_click(this.id)"><i class="bi bi-check-circle-fill me-2"></i>{{i.id}}</button>
+                          <button class="btn btn-primary" type="button" id="{{i.id}}" onClick="reply_click(this.id)"><i class="bi bi-check-circle-fill me-2"></i>add</button>
                         </div>
                       </form>
 <!--end form new subsection-->
