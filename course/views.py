@@ -88,17 +88,15 @@ def courseEdit(request, pk):
 #course detail
 def courseDetail(request, pk):
     mk = Course.objects.get(id=pk)
-   # user_list = User.objects.all()
-    sc = Section.objects.all().filter(section_id_course_id=mk)
-    ssc = SubSection.objects.all().filter(sub_id_id=mk)
+
     catg = Category.objects.filter(parent=None, mk_id=mk)
-    #unit = Unit.objects.all().filter(unit_id_course_id=mk)
+
     
 
 
 
 
-    context = {'course':mk,'sc':sc,'ssc':ssc,'catg':catg}
+    context = {'course':mk,'catg':catg}
    # print(catg)
     return render(request, 'course_detail.html', context)
 

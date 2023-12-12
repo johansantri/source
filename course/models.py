@@ -78,22 +78,7 @@ class Course (models.Model):
 
 
 
-class Section(models.Model):
-    section_name = models.CharField(max_length=250)
-    section_id_course = models.ForeignKey(Course,on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return f"{self.section_name}"
-    
 
-
-class SubSection(models.Model):
-    sub_section_name = models.CharField(max_length=250)
-    sub_id= models.ForeignKey(Course,on_delete=models.CASCADE)
-    sub_section_id = models.ForeignKey(Section,on_delete=models.CASCADE,related_name='section_id')
-
-    def __str__(self):
-        return f"{self.sub_section_name}"
 
     
 class Category(models.Model):

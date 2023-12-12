@@ -41,9 +41,13 @@
       {% if not i.children.all %}
         <h2 class="accordion-header" id="headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{i.slug}}" aria-expanded="true" aria-controls="collapseOne">
-               <h5> jika tidak ada isinya mulai dari sini {{i.title}}</h5>
+               <h5>  {{i.title}} {{i.mk_id}}</h5>
             </button>
         </h2>
+
+
+
+
 
 
 
@@ -51,22 +55,27 @@
           <div class="accordion-body">
 
               <div class="accordion" id="sub-accordionExample">
-                    <div class="accordion-item">
-                 
-                        <h2 class="accordion-header" id="sub-headingOne" style="text-align: center;">
-                            <button class="accordion-button"  id='changeSection' data-bs-toggle="modal" data-bs-target="#exampleModal">
-                               New Sub Section
-                            </button>
-                        </h2>
-
-                       
-
-                      
+               
 
 
-                       
-                    
-                    </div>
+
+
+
+        <!--add new sub section-->
+        <form class="row">
+                        
+          <div class="mb-3 col-md-10">
+           <label></label>
+            <input class="form-control" type="text" id="titlex-{{i.id}}" placeholder="Enter new sub section">
+            <input class="form-control" type="text" name="{{course.org_partner.id}}" id="section_id_coursesx-{{i.id}}" value="{{i.mk_id}}" hidden>
+            <input class="form-control" type="text" name="parent_idx" id="parent_idx-{{i.id}}" value="{{i.id}}"  hidden>
+          </div>
+       
+          <div class="mb-3 col-md-2 align-self-end">
+            <button class="btn btn-primary" type="button" id="{{i.id}}" onClick="reply_click(this.id)"><i class="bi bi-check-circle-fill me-2"></i>{{i.id}}</button>
+          </div>
+        </form>
+<!--end form new subsection-->
                
               </div>
           </div>
@@ -74,31 +83,12 @@
 
 
 
-                        <!-- Modal add sub section-->
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Add Sub Section</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <input class="form-control" type="text" name="title" id="title" maxlength="250"  required placeholder="New Sub Section">
-                          <input class="form-control" type="text" name="{{course.org_partner.id}}" id="section_id_courses" value="{{course.org_partner.id}}" hidden>
-                          <input class="form-control" type="text" name="parent_id" id="parent_id" value="{{i.id}}" hidden>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary" id="btnSubSection">Save changes</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+               
 
         {% else %}
         <h2 class="accordion-header" id="headingOne">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{i.slug}}" aria-expanded="true" aria-controls="collapseOne">
-            <h5>jika ada isinya mulai dari sini {{i.title}}</h5> 
+            <h5> {{i.title}}</h5> 
           </button>
       </h2>
 
@@ -113,10 +103,10 @@
                       {% if not obj.children.all %}
                           <h2 class="accordion-header" id="sub-headingOne">
                               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{obj.slug}}" aria-expanded="false" aria-controls="collapseOne">
-                                  sub menu #1 {{obj.title}}
+                                   #1 {{obj.title}}
                               </button>
                           </h2>
-
+                          
                           {% else %}
 
                           <h2 class="accordion-header" id="sub-headingOne">
@@ -137,21 +127,28 @@
                           {% endif %}
                   {% endfor %}
                       </div>
-                      <div class="accordion-item">
-                          <h2 class="accordion-header" id="sub-headingTwo">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sub-collapseTwo" aria-expanded="false" aria-controls="sub-collapseTwo">
-                                add sub section
-                              </button>
+                 
 
-                              
+<!--add new sub section-->
+                      <form class="row">
+                        
+                        <div class="mb-3 col-md-10">
+                         <label></label>
+                          <input class="form-control" type="text" id="titlex-{{i.id}}" placeholder="Enter new sub section">
+                          <input class="form-control" type="text" name="{{course.org_partner.id}}" id="section_id_coursesx-{{i.id}}" value="{{course.org_partner.id}}" hidden>
+                          <input class="form-control" type="text" name="parent_idx" id="parent_idx-{{i.id}}" value="{{i.id}}"  hidden>
+                        </div>
+                     
+                        <div class="mb-3 col-md-2 align-self-end">
+                          <button class="btn btn-primary" type="button" id="{{i.id}}" onClick="reply_click(this.id)"><i class="bi bi-check-circle-fill me-2"></i>{{i.id}}</button>
+                        </div>
+                      </form>
+<!--end form new subsection-->
 
-                          </h2>
-                          <div id="sub-collapseTwo" class="accordion-collapse collapse" aria-labelledby="sub-headingTwo" data-bs-parent="#sub-accordionExample">
-                              <div class="accordion-body">
-                                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                              </div>
-                          </div>
-                      </div>
+                     
+
+
+
                 </div>
             </div>
         </div>
@@ -193,8 +190,8 @@
                   <div class="mb-3" >
                    
                    <p id="hasil"></p>
-                      <input class="form-control" type="text" name="title" id="title" maxlength="250" value="section_name" required placeholder="Section">
-                      <input class="form-control" type="text" name="{{course.org_partner.id}}" id="section_id_courses" value="{{course.org_partner.id}}" hidden>
+                      <input class="form-control" type="text" name="title1" id="title1" maxlength="250"  required placeholder="Section">
+                      <input class="form-control" type="text" name="{{course.org_partner.id}}" id="mk_id" value="{{course.org_partner.id}}" hidden>
                     </div>
 
                   
@@ -203,14 +200,7 @@
        
          </div>
              
-         <div class="col-md-12">
-          <div class="mb-3">
-          
-              <button class="btn btn-outline-primary"   type="submit"><i class="bi bi-check-circle-fill me-2"></i>+ New Subsection</button>
-            </div>
-
-          
-      </div>
+      
       
          
         </form>
@@ -232,83 +222,64 @@
 
   <script>// Save data
  
-  
 
 // add section
     $('#btnSaveSection').click(function(){
         //console.log("Button Save Clicked");
         output ="";
         //let sid = $('#id_course').val();
-        let mk_id = $('#section_id_courses').val();
-        let title = $('#title').val();
+        let mk_id = $('#mk_id').val();
+        let title = $('#title1').val();
         
-    
-        //console.log(sid);
-        //console.log(n);
-
-
-
         if(title == ""){
-            console.log("Please section");
-       
+          alert("title not empety");
+          return false;
         }else{
-            //console.log(n);
-            //console.log(e);
-            //console.log(c);
-    
             mydata = {title:title,mk_id:mk_id};
     
-            //console.log(mydata);
+            console.log(mydata);
             $.ajax({
                 url: "{% url 'course:course_section' %}",
                 method: "POST",
                 data: mydata,
     
                 success:function(data){
-                                        x = data.section_data;
-                                        //alert(x);
-                                        for(i=0; i<x.length; i++){
-                                                output += 
-                                                    "<button class='btn btn-outline-primary' id='changeSection'>" + x[i].title +
-                                                    "</button> "
-                                            }
-                                            $('#hasil').html(output);
-                                            $('#title').fadeOut();
-                                            $('#btnSaveSection').fadeOut();
-                                            $('form')[0].reset();
-                        
+                                     $('form')[0].reset();
+                                     alert("sucess add section");
+
+                                     window.location.reload();
                         
                                     }
             });
-    }
+    
+          }
 
-
-    $("#changeSection").click(function(){
-      $('#section_name').fadeIn();
-    })
+   
     
     })
     
     //endaddsection
 
-    //add subsection
+    //add subsection sudah ada data
 
     
-    $('#btnSubSection').click(function(){
-        //console.log("Button Save Clicked");
-        output ="";
-        //let sid = $('#id_course').val();
-        let mk_id = $('#section_id_courses').val();
-        let title = $('#title').val();
-        let parent_id = $('#parent_id').val();
-        
-    
-        //console.log(sid);
-        //console.log(n);
 
 
 
-        if(title == ""){
+        function reply_click(clicked_id)
+        {
+          var title = `#titlex-${clicked_id}`
+          var mk_id = `#section_id_coursesx-${clicked_id}`
+          var parent_id = `#parent_idx-${clicked_id}`
+          
+         var title = $(title).val();
+         var mk_id = $(mk_id).val();
+         var parent_id = $(parent_id).val();
+         console.log(title);
+         console.log(mk_id);
+         console.log(parent_id);
+         
+         if(title == ""){
             console.log("Please section");
        
         }else{
@@ -326,28 +297,70 @@
     
                 success:function(data){
                                         x = data.section_data;
-                                        //alert(x);
-                                        for(i=0; i<x.length; i++){
-                                                output += 
-                                                    "<button class='btn btn-outline-primary' id='changeSection'>" + x[i].title +
-                                                    "</button> "
-                                            }
-                                            $('#hasil').html(output);
-                                            $('#title').fadeOut();
-                                            $('#btnSaveSection').fadeOut();
-                                            $('form')[0].reset();
-                        
+                                        alert("success");
+                                        console.log(title);
+                                        console.log($('form'));
+                                        title.reset();
+                                        $('form')[0].reset();
+                                           
+                                            
+                                           // window.location.reload();
                         
                                     }
             });
     }
 
+        }
+        
 
-    $("#changeSection").click(function(){
-      $('#section_name').fadeIn();
-    })
+
+
+
+        function reply_click(clicked_id)
+        {
+          var title = `#titlex-${clicked_id}`
+          var mk_id = `#section_id_coursesx-${clicked_id}`
+          var parent_id = `#parent_idx-${clicked_id}`
+          
+         var title = $(title).val();
+         var mk_id = $(mk_id).val();
+         var parent_id = $(parent_id).val();
+         console.log(title);
+         console.log(mk_id);
+         console.log(parent_id);
+         
+         if(title == ""){
+            console.log("Please section");
+       
+        }else{
+            //console.log(n);
+            //console.log(e);
+            //console.log(c);
     
-    })
+            mydata = {title:title,mk_id:mk_id,parent_id:parent_id};
+    
+            //console.log(mydata);
+            $.ajax({
+                url: "{% url 'course:course_sub' %}",
+                method: "POST",
+                data: mydata,
+    
+                success:function(data){
+                                        x = data.section_data;
+                                        alert("success");
+                                        console.log($(`#titlex-${clicked_id}`));
+                                        $(`#titlex-${clicked_id}`).val('');
+                                        $('form')[0].reset();
+                                            
+                                           // window.location.reload();
+                        
+                                    }
+            });
+    }
+
+        }
+        
+   
 
     </script>
 
