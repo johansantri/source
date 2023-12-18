@@ -40,9 +40,13 @@
       {% for i in catg %}
       {% if not i.children.all %}
         <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{i.slug}}" aria-expanded="true" aria-controls="collapseOne">
-               <h5>  {{i.title}} {{i.mk_id}}</h5>
+         
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{i.slug}}" aria-expanded="true" aria-controls="collapseOne">
+               <h5>    <a href="#" id="coba-{{i.id}}"  ondblclick="mySection(this.id)" >{{i.title}} <i class="bi bi-pencil-square"></i></a> </h5> 
+             
+              
             </button>
+            
         </h2>
 
 
@@ -67,8 +71,8 @@
           <div class="mb-3 col-md-10">
            <label></label>
             <input class="form-control" type="text" id="titlex-{{i.id}}" placeholder="Enter new sub section">
-            <input class="form-control" type="text" name="{{course.org_partner.id}}" id="section_id_coursesx-{{i.id}}" value="{{i.mk_id}}" hidden>
-            <input class="form-control" type="text" name="parent_idx" id="parent_idx-{{i.id}}" value="{{i.id}}"  hidden>
+            <input class="form-control" type="text" name="{{course.org_partner.id}}" id="section_id_coursesx-{{i.id}}" value="{{i.mk_id}}" hidden disabled>
+            <input class="form-control" type="text" name="parent_idx" id="parent_idx-{{i.id}}" value="{{i.id}}" hidden disabled>
           </div>
        
           <div class="mb-3 col-md-2 align-self-end">
@@ -88,7 +92,7 @@
         {% else %}
         <h2 class="accordion-header" id="headingOne">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{i.slug}}" aria-expanded="true" aria-controls="collapseOne">
-            <h5> {{i.title}}</h5> 
+            <h5>  <a href="{{i.slug}}">111111111{{i.title}} <i class="bi bi-pencil-square"></i></a> </h5> 
           </button>
       </h2>
 
@@ -101,9 +105,9 @@
                       <div class="accordion-item">
                         {% for obj in i.children.all %}
                       {% if not obj.children.all %}
-                          <h2 class="accordion-header" id="sub-headingOne">
+                          <h2 class="accordion-header" id="sub-headingOne"> 
                               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{obj.slug}}" aria-expanded="false" aria-controls="collapseOne">
-                                   {{obj.title}}
+                                   <a href="#">{{obj.title}} <i class="bi bi-pencil-square"></i></a> 
                               </button>
                           </h2>
                           
@@ -135,7 +139,7 @@
                         <div class="mb-3 col-md-10">
                          <label></label>
                           <input class="form-control" type="text" id="titlex-{{i.id}}" placeholder="Enter new sub section">
-                          <input class="form-control" type="text" name="{{course.org_partner.id}}" id="section_id_coursesx-{{i.id}}" value="{{course.org_partner.id}}" hidden>
+                          <input class="form-control" type="text" name="{{course.org_partner.id}}" id="section_id_coursesx-{{i.id}}" value="{{i.mk_id}}" hidden>
                           <input class="form-control" type="text" name="parent_idx" id="parent_idx-{{i.id}}" value="{{i.id}}"  hidden>
                         </div>
                      
@@ -189,7 +193,7 @@
               <div class="col-md-12">
                   <div class="mb-3" >
                    
-                   <p id="hasil"></p>
+                   <p id="hasil" ></p>
                       <input class="form-control" type="text" name="title1" id="title1" maxlength="250"  required placeholder="Section">
                       <input class="form-control" type="text" name="{{course.org_partner.id}}" id="mk_id" value="{{course.org_partner.id}}" hidden>
                     </div>
@@ -221,7 +225,13 @@
 
 
   <script>// Save data
- 
+    //$("#er").toggle();
+    function mySection(clicked_id) {
+        // $("#coba").html('');
+        //var coba = `#coba-${clicked_id}`
+        //var cobaa = $(coba).val();
+        //console.log(cobaa);
+    }
 
 // add section
     $('#btnSaveSection').click(function(){
@@ -258,9 +268,9 @@
     
     })
     
-    //endaddsection
+      //endaddsection
 
-    //add subsection sudah ada data
+      //add subsection sudah ada data
 
     
 
@@ -303,7 +313,7 @@
                                         title.reset();
                                         $('form')[0].reset();
                                            
-                                            
+                                        location.reload();
                                            // window.location.reload();
                         
                                     }
@@ -351,7 +361,7 @@
                                         console.log($(`#titlex-${clicked_id}`));
                                         $(`#titlex-${clicked_id}`).val('');
                                         $('form')[0].reset();
-                                            
+                                        location.reload(); 
                                            // window.location.reload();
                         
                                     }
