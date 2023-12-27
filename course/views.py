@@ -87,18 +87,18 @@ def courseEdit(request, pk):
 
 #course detail
 def courseDetail(request, pk):
-    mk = Course.objects.get(id=pk)
+    if request.user.is_staff == True:
+            mk = Course.objects.get(id=pk)
 
-    catg = Category.objects.filter(parent=None, mk_id=mk)
+            catg = Category.objects.filter(parent=None, mk_id=mk)
 
-    
-
-
-
-
-    context = {'course':mk,'catg':catg}
-   # print(catg)
-    return render(request, 'course_detail.html', context)
+            
+            context = {'course':mk,'catg':catg}
+        # print(catg)
+            return render(request, 'course_detail.html', context)
+    else:
+          
+        return redirect ('/')
 
 
 #add section
