@@ -5,10 +5,7 @@
 {% block content %}
 
  
-  
-
-  
-
+<!--ini untuk nama mk-->
   <div class="app-title">
     <div>
       <h1> <i class="bi bi-file-earmark-text"></i>
@@ -24,14 +21,7 @@
         </button></li>
     </ul>
   </div>
- 
-
-
-
-        
-
-
-
+  <!--end nama mk-->
 
 
 
@@ -45,12 +35,10 @@
                <h5 id="coba-{{i.id}}"  ondblclick="mySection(this.id)" data-bs-toggle="modal" data-bs-target="#exampleModal{{i.id}}" >y{{i.title}}  </h5> 
             
             </button>
-          
-              
+     
             
           <!--modal update sectiomn-->
-           
-                
+
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -69,29 +57,21 @@
                               <div class="mb-3" >
                                
                                <p id="hasil" ></p>
-                                  <input class="form-control" type="text" name="titlex-{{i.id}}" id="titlex-{{i.id}}" maxlength="250" value="{{i.title}}"  required placeholder="Section">
-                                  <input class="form-control" type="text" name="{{course.org_partner.id}}" id="mk_id" value="{{course.org_partner.id}}" hidden>
-                                </div>
-            
+                                  <input class="form-control" type="text" name="updatetitle{{i.id}}" id="updatetitle-{{i.id}}" maxlength="250" value="{{i.title}}"  required placeholder="Section">
+                                  <input class="form-control" type="text" name="{{i.id}}" id="id{{i.id}}" value="{{i.id}}" hidden disabled>
+                                </div>            
                               
-                          </div>
-                       
+                          </div>                       
                    
-                     </div>
-                         
+                     </div>                       
                   
-                  
-                     
                     </form>
-
-
-
 
                    
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="{{i.id}}" onClick="update_click(this.id)">Save changes</button>
                   </div>
                 </div>
                 </div>
@@ -101,9 +81,6 @@
             
         </h2>
         
-
-
-
 
 
 
@@ -169,8 +146,8 @@
                                 <div class="mb-3" >
                                  
                                  <p id="hasil" ></p>
-                                    <input class="form-control" type="text" name="titlex-{{i.id}}" id="titlex-{{i.id}}" maxlength="250" value="{{i.title}}"  required placeholder="Section">
-                                    <input class="form-control" type="text" name="{{course.org_partner.id}}" id="mk_id" value="{{course.org_partner.id}}" hidden>
+                                 <input class="form-control" type="text" name="updatetitle{{i.id}}" id="updatetitle-{{i.id}}" maxlength="250" value="{{i.title}}"  required placeholder="Section">
+                                 <input class="form-control" type="text" name="{{i.id}}" id="id{{i.id}}" value="{{i.id}}" hidden disabled>
                                   </div>
               
                                 
@@ -179,19 +156,12 @@
                      
                        </div>
                            
-                    
-                    
-                       
                       </form>
   
-  
-  
-  
-                     
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
+                      <button type="button" class="btn btn-primary"  id="{{i.id}}" onClick="update_click(this.id)">Save changes</button>
                     </div>
                   </div>
                   </div>
@@ -279,7 +249,7 @@
 
 
 
-<!-- Modal section -->
+<!-- Modal section add -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
@@ -326,12 +296,18 @@
 
 
   <script>// Save data
-    //$("#er").toggle();
-    function mySection(clicked_id) {
-      
-      var x = document.getElementById(`${clicked_id}`);
-     console.log(x);
-    }
+  function update_click(clicked_id)
+        {
+        //  var title = 
+        var title = `#updatetitle-${clicked_id}`
+        var id = `#id${clicked_id}`
+        var title = $(title).val();
+        var id = $(id).val();
+        console.log(title);
+        console.log(id);
+        
+        }
+
 
 // add section
     $('#btnSaveSection').click(function(){
