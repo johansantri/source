@@ -1,4 +1,4 @@
-#!/home/x/app/source/.venv/bin/python3
+#!/home/x/app/source/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
