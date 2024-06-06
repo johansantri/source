@@ -13456,7 +13456,7 @@ textarea.form-control-lg {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #ff0000;
+  background-color: #bd2222;
   z-index: 1030;
   padding-right: 15px;
 }
@@ -13491,7 +13491,7 @@ textarea.form-control-lg {
             flex: 0 0 auto;
     display: block;
     width: 230px;
-    background-color: #ff0000;
+    background-color: #bd2222;
   }
 }
 .app-header__logo:focus, .app-header__logo:hover {
