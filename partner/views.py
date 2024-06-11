@@ -22,17 +22,17 @@ def partnerAdd(request):
         if request.method == "POST":
                 par = Partner()
                 par.partner_name = request.POST.get('partner_name')
-                par.partner_abbreviation = request.POST.get('partner_abbreviation')
-                par.partner_email_id = request.POST.get('partner_email')
-                par.partner_phone = request.POST.get('partner_phone')
-                par.partner_address = request.POST.get('partner_address')
-                par.partner_tax = request.POST.get('partner_tax')
-                par.partner_status = request.POST.get('partner_status')
+                par.abbreviation = request.POST.get('partner_abbreviation')
+                par.e_mail_id = request.POST.get('partner_email')
+                par.phone = request.POST.get('partner_phone')
+                par.address = request.POST.get('partner_address')
+                par.tax = request.POST.get('partner_tax')
+                par.status = request.POST.get('partner_status')
                 #par.partner_logo = request.POST.get('partner_logo')
-                par.partner_check = request.POST.get('partner_check')
+                par.checks = request.POST.get('partner_check')
 
                 if len(request.FILES) != 0:
-                    par.partner_logo = request.FILES['partner_logo']
+                    par.logo = request.FILES['partner_logo']
                     par.save()
                     messages.success(request, "PARTNER ADD SUCCESSFULLY")
                     return redirect('/partner/list')
@@ -50,19 +50,19 @@ def partnerEdit(request, pk):
     user_list = User.objects.all()
     if request.method == "POST":
         if len(request.FILES) != 0:
-            if len(par.partner_logo) > 0:
-                os.remove(par.partner_logo.path)
+            if len(par.logo) > 0:
+                os.remove(par.logo.path)
                  #prod.image = request.FILES['image']
-            par.partner_logo = request.FILES['partner_logo']
+            par.logo = request.FILES['partner_logo']
         par.partner_name = request.POST.get('partner_name')
-        par.partner_abbreviation = request.POST.get('partner_abbreviation')
-        par.partner_email_id = request.POST.get('partner_email')
-        par.partner_phone = request.POST.get('partner_phone')
-        par.partner_address = request.POST.get('partner_address')
-        par.partner_tax = request.POST.get('partner_tax')
-        par.partner_status = request.POST.get('partner_status')
+        par.abbreviation = request.POST.get('partner_abbreviation')
+        par.e_mail_id = request.POST.get('partner_email')
+        par.phone = request.POST.get('partner_phone')
+        par.address = request.POST.get('partner_address')
+        par.tax = request.POST.get('partner_tax')
+        par.status = request.POST.get('partner_status')
         
-        par.partner_check = request.POST.get('partner_check')
+        par.checks = request.POST.get('partner_check')
         par.save()
         messages.success(request, "Product Updated Successfully")
         return redirect('/partner/list')

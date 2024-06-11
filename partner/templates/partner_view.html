@@ -29,16 +29,16 @@
         <tr>
           <td>1</td>
           <td><a href="{% url 'partner:partner_edit' part.id %}">{{part.partner_name}}</a></td>
-          <td>{{part.partner_email}}</td>
-          <td>{{part.partner_phone}}</td>
+          <td>{{part.e_mail}}</td>
+          <td>{{part.phone}}</td>
           <td>
-            {% if part.partner_status == '1' %}
+            {% if part.status == '1' %}
             <span class="badge text-bg-primary">{% trans 'active' %}</span>
             {% else %}
             <span class="badge text-bg-warning">{% trans 'inactive' %}</span>
             {% endif %}
           </td>
-          <td>{{part.partner_join}}</td>
+          <td>{{part.join}}</td>
         </tr>
        {% endfor %}
       </tbody>
