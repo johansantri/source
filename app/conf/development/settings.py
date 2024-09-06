@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'accounts',
     'dasbords',
     'partner',
-    'course'
+    'course',
 ]
 
 MIDDLEWARE = [
